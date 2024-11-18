@@ -101,7 +101,7 @@ resource "aws_db_instance" "example" {
   db_name                = var.database_name  # 수정된 부분
   username               = var.username
   password               = var.password
-  instance_class         = "db.t2.micro"
+  instance_class         = "db.t3.micro"
   allocated_storage      = var.allocated_storage
   skip_final_snapshot    = true
   license_model          = var.license_model
