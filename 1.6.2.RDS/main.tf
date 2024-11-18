@@ -98,7 +98,7 @@ resource "aws_db_instance" "example" {
   engine                 = var.engine_name
   engine_version         = var.engine_version
   port                   = var.port
-  name                   = var.database_name
+  db_name                = var.database_name  # 수정된 부분
   username               = var.username
   password               = var.password
   instance_class         = "db.t2.micro"
