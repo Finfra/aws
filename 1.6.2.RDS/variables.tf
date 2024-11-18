@@ -48,7 +48,7 @@ variable "engine_name" {
 
 variable "family" {
   description = "Family of the database"
-  default     = "mysql5.7"
+  default     = "mysql8.0"
 }
 
 variable "port" {
@@ -62,7 +62,7 @@ variable "major_engine_version" {
 }
 
 variable "engine_version" {
-  default     = "5.7.21"
+  default     = "8.0.33"
   description = "Version of the database to be launched"
 }
 
