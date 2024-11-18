@@ -21,7 +21,7 @@ terraform apply -auto-approve
 ```
 ip=$(cat terraform.tfstate |grep public_ip\"|awk 'BEGIN{FS="\""}{printf $4}')
   # =:= cat terraform.tfstate|grep public_ip
-ssh -i ~/mykey ubuntu@$ip
+ssh ubuntu@$ip
 ```
 * 추가로 생성된 Volume확인
 * AWS Console → EC2 → Volumes
