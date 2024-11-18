@@ -58,7 +58,7 @@ variable "port" {
 
 variable "major_engine_version" {
   description = "MAJOR.MINOR version of the DB engine"
-  default     = "5.8"
+  default     = "8.0"
 }
 
 variable "engine_version" {
