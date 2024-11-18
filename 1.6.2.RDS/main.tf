@@ -12,7 +12,7 @@ data "aws_vpc" "default" {
 data "aws_subnets" "all" {
   filter {
     name   = "vpc-id"
-    values = [aws_vpc.main.id]
+    values = [data.aws_vpc.default.id]
   }
 }
 
@@ -24,7 +24,7 @@ data "aws_subnets" "all" {
 resource "aws_db_subnet_group" "example" {
   name = var.name
   # subnet_ids = [data.aws_subnet_ids.all.ids]
-  subnet_ids = data.aws_subnet_ids.all.ids
+  subnet_ids = data.aws_subnets.all.ids
   # subnet_ids = ["${data.aws_subnet_ids.*.ids}"]
 
   tags = {
