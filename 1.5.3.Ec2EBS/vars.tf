@@ -5,7 +5,7 @@ variable "PATH_TO_PRIVATE_KEY" {
   default = " ~/.ssh/id_rsa.pub"
 }
 variable "PATH_TO_PUBLIC_KEY" {
-  default = "~/mykey.pub"
+  default = " ~/.ssh/id_rsa.pub"
 }
 variable "AMIS" {
   default = {
