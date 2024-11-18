@@ -37,7 +37,7 @@ aws configure
     AWS Secret Access Key [None]: xxxxxxxxxxxxxxxxxxx
     Default region name [None]: ap-northeast-2
     Default output format [None]: text
-cd ~/sreMsa/Lab1.Kubespray/Lab3.InstanceForKubernetes
+cd ~/aws/1.4.1.terraformInstall
 # rm -rf ~/.ssh/known_hosts
 bash doSetHosts.sh
 ```
