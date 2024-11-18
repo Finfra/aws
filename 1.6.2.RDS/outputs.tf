@@ -1,3 +1,3 @@
-output "db_instance_id" {
-  value = aws_db_instance.example.id
+output "subnet_ids" {
+  value = data.aws_subnets.all.ids
 }
