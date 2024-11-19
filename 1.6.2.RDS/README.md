@@ -32,7 +32,6 @@ cat terraform.tfstate |grep endpoint
 mysql -uroot -h <url> -pNowage12kitri
   show databases;
   exit
-ssh -i ~/mykey ubuntu@<ip> hostname
 ```
 
 * cf) Mysql Exmaple
