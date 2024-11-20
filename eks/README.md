@@ -34,6 +34,17 @@ kubectl version --client
 kubectl cluster-info
 kubectl get nodes
 ```
+## aws 명령 실패시
+```
+sudo -i
+python3 -m pip uninstall  --break-system-packages awscli
+python3 -m pip install --break-system-packages awscli
+pip install pyopenssl --upgrade
+pip install pyopenssl --break-system-package --upgrade
+exit 
+aws configure
+```
+
 
 ## **실습 후 제거**
 ```
