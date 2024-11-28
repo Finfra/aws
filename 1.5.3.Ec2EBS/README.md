@@ -43,7 +43,7 @@ echo "/dev/xvdh1 /data1 ext4 defaults 0 1" >> /etc/fstab
 reboot
   # Exit 됨
 
-ssh -i ~/mykey ubuntu@$ip
+ssh  ubuntu@$ip
 df -h
 exit
 ```
