@@ -1,0 +1,58 @@
+replicaCount: 1
+
+image:
+  repository: nginx
+  pullPolicy: IfNotPresent
+  tag: "dev-latest"
+
+config:
+  message: "Hello from Development Environment!"
+  environment: "development"
+  debug: "true"
+  logLevel: "debug"
+
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  className: "alb"
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+  hosts:
+    - host: my-webapp-dev.example.com
+      paths:
+        - path: /
+          pathType: Prefix
+
+autoscaling:
+  enabled: false
+
+configMap:
+  enabled: true
+
+# 개발 환경용 추가 설정
+nodeSelector:
+  kubernetes.io/arch: amd64
+
+tolerations: []
+
+affinity: {}
+
+# 개발 환경용 시크릿
+secret:
+  enabled: true
+  data:
+    db-password: "dev-password"
+    api-key: "dev-api-key"
