@@ -12,8 +12,7 @@
 
 ### 2. "terraform" 사용자 생성
 * Users → Add users 클릭
-* User name: `terraform` 입력
-* Access type: `Programmatic access` 선택
+* User name: `terraform` 입력(유저명은 어떤 것을 선택하던 상관 없습니다.)
 
 ### 3. 권한 부여
 * Attach existing policies directly 선택
@@ -22,7 +21,13 @@
   - `PowerUserAccess`
 
 ### 4. Access Key 및 Secret Key 생성
-* Create user 후 Access Key 정보 확인
+* `Create user`클릭
+* 생성된 "terraform"유저를 선택 하여 Summary화면으로 이동
+* "Summary"화면에서 "Security credentials" 탭을 클릭
+* AWS 자격 증명 유형 선택에서 "액세스 키"선택
+* "Create access key"를 클릭
+* "Access key best practices & alternatives"화면에서 "Command Line Interface (CLI)"선택 후 Confirmation체크 박스 클릭 후 아래 체크박스 클릭 후다음 버튼 클릭
+* "Create access key"버튼 클릭 하여 Security키와 Access키를 생성
 * `Download.csv file`로 보안 키 저장
 * **중요**: 이 정보는 한 번만 표시되므로 반드시 저장
 

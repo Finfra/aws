@@ -93,12 +93,12 @@ free -m
 
 ### 일반적인 오류와 해결방법
 
-| 오류 | 원인 | 해결방법 |
-|------|------|----------|
-| Connection timeout | 보안 그룹 설정 | SSH(22) 포트 허용 확인 |
-| Permission denied | 키 파일 권한 | chmod 400 적용 |
+| 오류                         | 원인             | 해결방법                              |
+| ---------------------------- | ---------------- | ------------------------------------- |
+| Connection timeout           | 보안 그룹 설정   | SSH(22) 포트 허용 확인                |
+| Permission denied            | 키 파일 권한     | chmod 400 적용                        |
 | Host key verification failed | known_hosts 충돌 | ~/.ssh/known_hosts에서 해당 항목 삭제 |
-| Wrong user | 잘못된 사용자명 | Ubuntu AMI는 'ubuntu' 사용 |
+| Wrong user                   | 잘못된 사용자명  | Ubuntu AMI는 'ubuntu' 사용            |
 
 ### 연결 테스트 명령어
 ```bash
