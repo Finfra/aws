@@ -1,0 +1,441 @@
+# AWSweepr 완전 삭제용 filter.yml
+# 주의: 모든 AWS 리소스를 삭제함. 반드시 --dry-run으로 테스트 후 사용
+# 사용법: awsweeper --dry-run filter.yml
+#           i1, terraform 빼고 지워짐
+#           i1은 직접 제거할 것.
+# ===== COMPUTE =====
+aws_instance:                                    # EC2 인스턴스
+  - tags:
+      NOT(Name): ^i1$
+aws_launch_configuration:                        # Launch Configuration
+aws_launch_template:                             # Launch Template
+aws_autoscaling_group:                           # Auto Scaling Group
+aws_spot_fleet_request:                          # Spot Fleet
+aws_spot_instance_request:                       # Spot Instance
+
+# ===== STORAGE =====
+aws_ebs_volume:                                  # EBS 볼륨
+aws_ebs_snapshot:                                # EBS 스냅샷
+aws_efs_file_system:                             # EFS 파일시스템
+aws_efs_access_point:                            # EFS 액세스 포인트
+aws_fsx_lustre_file_system:                      # FSx Lustre
+aws_fsx_windows_file_system:                     # FSx Windows
+
+# ===== S3 =====
+aws_s3_bucket:                                   # S3 버킷
+aws_s3outposts_endpoint:                         # S3 Outposts 엔드포인트
+
+# ===== NETWORKING =====
+aws_vpc:                                         # VPC
+aws_subnet:                                      # 서브넷
+aws_internet_gateway:                            # 인터넷 게이트웨이
+aws_nat_gateway:                                 # NAT 게이트웨이
+aws_egress_only_internet_gateway:                # IPv6 전용 인터넷 게이트웨이
+aws_route_table:                                 # 라우팅 테이블
+aws_network_acl:                                 # 네트워크 ACL
+aws_security_group:                              # 보안 그룹
+aws_network_interface:                           # 네트워크 인터페이스
+aws_eip:                                         # Elastic IP
+aws_key_pair:                                    # 키 페어
+aws_placement_group:                             # 배치 그룹
+
+# ===== VPC CONNECTIVITY =====
+aws_vpc_endpoint:                                # VPC 엔드포인트
+aws_vpc_endpoint_service:                        # VPC 엔드포인트 서비스
+aws_vpc_peering_connection:                      # VPC 피어링
+aws_vpn_gateway:                                 # VPN 게이트웨이
+aws_ec2_transit_gateway:                         # Transit Gateway
+aws_ec2_transit_gateway_vpc_attachment:          # TGW VPC 연결
+aws_ec2_transit_gateway_peering_attachment:      # TGW 피어링 연결
+aws_ec2_transit_gateway_route_table:             # TGW 라우팅 테이블
+
+# ===== LOAD BALANCING =====
+aws_elb:                                         # Classic Load Balancer
+aws_lb:                                          # Application/Network LB
+aws_alb_target_group:                            # ALB 타겟 그룹
+aws_lb_target_group:                             # LB 타겟 그룹
+
+# ===== DATABASE =====
+aws_db_instance:                                 # RDS 인스턴스
+aws_rds_cluster:                                 # RDS 클러스터
+aws_rds_cluster_endpoint:                        # RDS 클러스터 엔드포인트
+aws_rds_cluster_parameter_group:                 # RDS 클러스터 파라미터 그룹
+aws_rds_global_cluster:                          # RDS 글로벌 클러스터
+aws_db_parameter_group:                          # DB 파라미터 그룹
+aws_db_security_group:                           # DB 보안 그룹
+aws_db_subnet_group:                             # DB 서브넷 그룹
+aws_db_snapshot:                                 # DB 스냅샷
+aws_db_event_subscription:                       # DB 이벤트 구독
+aws_db_proxy:                                    # RDS 프록시
+
+# ===== DYNAMODB =====
+aws_dynamodb_table:                              # DynamoDB 테이블
+aws_dynamodb_global_table:                       # DynamoDB 글로벌 테이블
+aws_dax_parameter_group:                         # DAX 파라미터 그룹
+aws_dax_subnet_group:                            # DAX 서브넷 그룹
+
+# ===== ELASTICACHE =====
+aws_elasticache_replication_group:               # ElastiCache 복제 그룹
+aws_elasticache_global_replication_group:        # ElastiCache 글로벌 복제
+
+# ===== REDSHIFT =====
+aws_redshift_cluster:                            # Redshift 클러스터
+aws_redshift_parameter_group:                    # Redshift 파라미터 그룹
+aws_redshift_security_group:                     # Redshift 보안 그룹
+aws_redshift_subnet_group:                       # Redshift 서브넷 그룹
+aws_redshift_event_subscription:                 # Redshift 이벤트 구독
+aws_redshift_snapshot_copy_grant:                # Redshift 스냅샷 복사 권한
+aws_redshift_snapshot_schedule:                  # Redshift 스냅샷 스케줄
+
+# ===== NEPTUNE =====
+aws_neptune_event_subscription:                  # Neptune 이벤트 구독
+
+# ===== TIMESTREAM =====
+aws_timestreamwrite_database:                    # Timestream 데이터베이스
+
+# ===== IAM =====
+aws_iam_user:                                    # IAM 사용자
+  - tags:
+      NOT(Name): terraform
+aws_iam_group:                                   # IAM 그룹
+aws_iam_role:                                    # IAM 역할
+aws_iam_policy:                                  # IAM 정책
+aws_iam_instance_profile:                        # IAM 인스턴스 프로파일
+aws_iam_server_certificate:                      # IAM 서버 인증서
+aws_iam_service_linked_role:                     # IAM 서비스 연결 역할
+aws_iam_access_key:                              # IAM 액세스 키
+aws_iam_account_alias:                           # IAM 계정 별칭
+
+# ===== LAMBDA =====
+aws_lambda_function:                             # Lambda 함수
+aws_lambda_code_signing_config:                  # Lambda 코드 서명 설정
+aws_lambda_event_source_mapping:                 # Lambda 이벤트 소스 매핑
+
+# ===== API GATEWAY =====
+aws_api_gateway_rest_api:                        # API Gateway REST API
+aws_api_gateway_api_key:                         # API Gateway API 키
+aws_api_gateway_client_certificate:              # API Gateway 클라이언트 인증서
+aws_api_gateway_domain_name:                     # API Gateway 도메인명
+aws_api_gateway_usage_plan:                      # API Gateway 사용 계획
+aws_api_gateway_vpc_link:                        # API Gateway VPC 링크
+aws_apigatewayv2_api:                           # API Gateway v2 API
+aws_apigatewayv2_domain_name:                   # API Gateway v2 도메인명
+aws_apigatewayv2_vpc_link:                      # API Gateway v2 VPC 링크
+
+# ===== CODEDEPLOY & CI/CD =====
+aws_codedeploy_deployment_config:                # CodeDeploy 배포 설정
+aws_codebuild_project:                           # CodeBuild 프로젝트
+aws_codebuild_report_group:                      # CodeBuild 보고서 그룹
+aws_codebuild_source_credential:                 # CodeBuild 소스 자격 증명
+aws_codecommit_repository:                       # CodeCommit 리포지토리
+aws_codepipeline_webhook:                        # CodePipeline 웹훅
+aws_codestarconnections_connection:              # CodeStar 연결
+aws_codestarconnections_host:                    # CodeStar 호스트
+aws_codestarnotifications_notification_rule:    # CodeStar 알림 규칙
+aws_codeartifact_domain:                         # CodeArtifact 도메인
+aws_codeartifact_repository:                     # CodeArtifact 리포지토리
+
+# ===== CLOUDFORMATION =====
+aws_cloudformation_stack:                       # CloudFormation 스택
+aws_cloudformation_stack_set:                   # CloudFormation 스택셋
+aws_cloudformation_type:                        # CloudFormation 타입
+
+# ===== ELASTIC BEANSTALK =====
+aws_elastic_beanstalk_application:              # Elastic Beanstalk 애플리케이션
+aws_elastic_beanstalk_application_version:      # Elastic Beanstalk 애플리케이션 버전
+aws_elastic_beanstalk_environment:              # Elastic Beanstalk 환경
+
+# ===== CONTAINERS =====
+aws_ecs_cluster:                                 # ECS 클러스터
+aws_ecs_task_definition:                         # ECS 태스크 정의
+aws_eks_cluster:                                 # EKS 클러스터
+aws_ecr_repository:                              # ECR 리포지토리
+aws_ecrpublic_repository:                        # ECR Public 리포지토리
+aws_batch_compute_environment:                   # Batch 컴퓨팅 환경
+aws_batch_job_definition:                        # Batch 작업 정의
+
+# ===== MESSAGING =====
+aws_sns_topic:                                   # SNS 토픽
+aws_sns_topic_subscription:                      # SNS 토픽 구독
+aws_sns_platform_application:                   # SNS 플랫폼 애플리케이션
+aws_sqs_queue:                                   # SQS 큐
+
+# ===== STREAMING =====
+aws_kinesis_stream:                              # Kinesis 스트림
+aws_kinesis_firehose_delivery_stream:            # Kinesis Firehose
+aws_kinesis_analytics_application:               # Kinesis Analytics 애플리케이션
+aws_kinesisanalyticsv2_application:              # Kinesis Analytics v2 애플리케이션
+aws_msk_cluster:                                 # MSK 클러스터
+aws_msk_configuration:                           # MSK 구성
+
+# ===== CLOUDWATCH =====
+aws_cloudwatch_dashboard:                       # CloudWatch 대시보드
+aws_cloudwatch_log_group:                       # CloudWatch 로그 그룹
+aws_cloudwatch_log_destination:                 # CloudWatch 로그 대상
+aws_cloudwatch_log_resource_policy:             # CloudWatch 로그 리소스 정책
+aws_cloudwatch_query_definition:                # CloudWatch 쿼리 정의
+aws_cloudwatch_event_bus:                       # CloudWatch Events 버스
+aws_cloudwatch_event_archive:                   # CloudWatch Events 아카이브
+
+# ===== CLOUDTRAIL =====
+aws_cloudtrail:                                  # CloudTrail
+
+# ===== CONFIG =====
+aws_config_config_rule:                         # Config 규칙
+aws_config_configuration_aggregator:            # Config 구성 집계기
+aws_config_configuration_recorder:              # Config 구성 레코더
+aws_config_conformance_pack:                    # Config 적합성 팩
+aws_config_delivery_channel:                    # Config 전달 채널
+
+# ===== KMS =====
+aws_kms_key:                                     # KMS 키
+aws_kms_external_key:                           # KMS 외부 키
+
+# ===== SECRETS MANAGER =====
+aws_secretsmanager_secret:                      # Secrets Manager 비밀
+
+# ===== CERTIFICATE MANAGER =====
+aws_acm_certificate:                            # ACM 인증서
+
+# ===== ROUTE53 =====
+aws_route53_zone:                               # Route53 호스팅 영역
+aws_route53_health_check:                       # Route53 상태 확인
+aws_route53_resolver_endpoint:                  # Route53 Resolver 엔드포인트
+aws_route53_resolver_query_log_config:         # Route53 Resolver 쿼리 로그 설정
+aws_route53_resolver_query_log_config_association: # Route53 Resolver 쿼리 로그 연결
+aws_route53_resolver_rule:                      # Route53 Resolver 규칙
+aws_route53_resolver_rule_association:          # Route53 Resolver 규칙 연결
+
+# ===== WAF =====
+aws_waf_web_acl:                                # WAF Web ACL
+aws_waf_rule:                                   # WAF 규칙
+aws_waf_rule_group:                             # WAF 규칙 그룹
+aws_waf_rate_based_rule:                        # WAF 속도 기반 규칙
+aws_waf_byte_match_set:                         # WAF 바이트 매치셋
+aws_waf_geo_match_set:                          # WAF 지역 매치셋
+aws_waf_ipset:                                  # WAF IP셋
+aws_waf_regex_match_set:                        # WAF 정규식 매치셋
+aws_waf_regex_pattern_set:                      # WAF 정규식 패턴셋
+aws_waf_size_constraint_set:                    # WAF 크기 제한셋
+aws_waf_sql_injection_match_set:                # WAF SQL 인젝션 매치셋
+aws_waf_xss_match_set:                          # WAF XSS 매치셋
+
+# ===== WAF REGIONAL =====
+aws_wafregional_web_acl:                        # WAF Regional Web ACL
+aws_wafregional_rule:                           # WAF Regional 규칙
+aws_wafregional_rule_group:                     # WAF Regional 규칙 그룹
+aws_wafregional_rate_based_rule:                # WAF Regional 속도 기반 규칙
+aws_wafregional_byte_match_set:                 # WAF Regional 바이트 매치셋
+aws_wafregional_geo_match_set:                  # WAF Regional 지역 매치셋
+aws_wafregional_ipset:                          # WAF Regional IP셋
+aws_wafregional_regex_match_set:                # WAF Regional 정규식 매치셋
+aws_wafregional_regex_pattern_set:              # WAF Regional 정규식 패턴셋
+aws_wafregional_size_constraint_set:            # WAF Regional 크기 제한셋
+aws_wafregional_sql_injection_match_set:        # WAF Regional SQL 인젝션 매치셋
+aws_wafregional_xss_match_set:                  # WAF Regional XSS 매치셋
+
+# ===== WAF V2 =====
+aws_wafv2_web_acl_logging_configuration:       # WAFv2 로깅 설정
+
+# ===== SECURITY =====
+aws_guardduty_detector:                         # GuardDuty 탐지기
+aws_accessanalyzer_analyzer:                    # Access Analyzer
+aws_securityhub_action_target:                  # Security Hub 액션 타겟
+aws_securityhub_insight:                        # Security Hub 인사이트
+aws_cloudhsm_v2_cluster:                        # CloudHSM v2 클러스터
+aws_macie2_classification_job:                  # Macie 분류 작업
+aws_macie2_custom_data_identifier:              # Macie 사용자 정의 데이터 식별자
+aws_macie2_findings_filter:                     # Macie 발견 사항 필터
+aws_networkfirewall_firewall:                   # Network Firewall
+aws_networkfirewall_firewall_policy:           # Network Firewall 정책
+aws_networkfirewall_rule_group:                 # Network Firewall 규칙 그룹
+
+# ===== MACHINE LEARNING =====
+aws_sagemaker_app_image_config:                 # SageMaker 앱 이미지 설정
+aws_sagemaker_code_repository:                  # SageMaker 코드 리포지토리
+aws_sagemaker_endpoint:                         # SageMaker 엔드포인트
+aws_sagemaker_feature_group:                    # SageMaker 피처 그룹
+aws_sagemaker_model:                            # SageMaker 모델
+aws_sagemaker_model_package_group:              # SageMaker 모델 패키지 그룹
+
+# ===== ANALYTICS =====
+aws_athena_named_query:                         # Athena 명명된 쿼리
+aws_athena_workgroup:                           # Athena 워크그룹
+aws_glue_crawler:                               # Glue 크롤러
+aws_glue_dev_endpoint:                          # Glue 개발 엔드포인트
+aws_glue_job:                                   # Glue 작업
+aws_glue_ml_transform:                          # Glue ML 변환
+aws_glue_registry:                              # Glue 레지스트리
+aws_glue_schema:                                # Glue 스키마
+aws_glue_security_configuration:                # Glue 보안 설정
+aws_glue_trigger:                               # Glue 트리거
+aws_glue_workflow:                              # Glue 워크플로우
+aws_emr_security_configuration:                 # EMR 보안 설정
+aws_qldb_ledger:                                # QLDB 원장
+
+# ===== MEDIA SERVICES =====
+aws_elastictranscoder_pipeline:                 # Elastic Transcoder 파이프라인
+aws_elastictranscoder_preset:                   # Elastic Transcoder 프리셋
+aws_media_convert_queue:                        # MediaConvert 큐
+aws_media_package_channel:                      # MediaPackage 채널
+aws_media_store_container:                      # MediaStore 컨테이너
+
+# ===== MIGRATION =====
+aws_dms_certificate:                            # DMS 인증서
+aws_dms_endpoint:                               # DMS 엔드포인트
+aws_dms_replication_subnet_group:               # DMS 복제 서브넷 그룹
+aws_dms_replication_task:                       # DMS 복제 작업
+aws_datasync_agent:                             # DataSync 에이전트
+aws_datasync_task:                              # DataSync 작업
+
+# ===== GAME DEVELOPMENT =====
+aws_gamelift_alias:                             # GameLift 별칭
+aws_gamelift_build:                             # GameLift 빌드
+aws_gamelift_fleet:                             # GameLift 플리트
+aws_gamelift_game_session_queue:                # GameLift 게임 세션 큐
+
+# ===== GLOBAL ACCELERATOR =====
+aws_globalaccelerator_accelerator:              # Global Accelerator
+
+# ===== APP MESH =====
+aws_appmesh_mesh:                               # App Mesh
+
+# ===== APPSYNC =====
+aws_appsync_graphql_api:                        # AppSync GraphQL API
+
+# ===== BACKUP =====
+aws_backup_plan:                                # Backup 계획
+aws_backup_vault:                               # Backup 볼트
+
+# ===== COST & BILLING =====
+aws_cur_report_definition:                      # Cost and Usage Report 정의
+
+# ===== LICENSING =====
+aws_licensemanager_license_configuration:      # License Manager 라이선스 설정
+
+# ===== STEP FUNCTIONS =====
+aws_sfn_activity:                               # Step Functions 활동
+aws_sfn_state_machine:                          # Step Functions 상태 머신
+
+# ===== SYSTEMS MANAGER =====
+aws_ssm_activation:                             # SSM 활성화
+aws_ssm_association:                            # SSM 연결
+aws_ssm_document:                               # SSM 문서
+aws_ssm_maintenance_window:                     # SSM 유지보수 윈도우
+aws_ssm_parameter:                              # SSM 파라미터
+aws_ssm_patch_baseline:                         # SSM 패치 기준
+aws_ssm_resource_data_sync:                     # SSM 리소스 데이터 동기화
+
+# ===== DIRECT CONNECT =====
+aws_dx_connection:                              # Direct Connect 연결
+aws_dx_hosted_private_virtual_interface:       # Direct Connect 호스팅 프라이빗 가상 인터페이스
+aws_dx_hosted_public_virtual_interface:        # Direct Connect 호스팅 퍼블릭 가상 인터페이스
+aws_dx_hosted_transit_virtual_interface:       # Direct Connect 호스팅 트랜짓 가상 인터페이스
+aws_dx_lag:                                     # Direct Connect LAG
+aws_dx_private_virtual_interface:              # Direct Connect 프라이빗 가상 인터페이스
+aws_dx_public_virtual_interface:               # Direct Connect 퍼블릭 가상 인터페이스
+aws_dx_transit_virtual_interface:              # Direct Connect 트랜짓 가상 인터페이스
+
+# ===== DATA LIFECYCLE MANAGEMENT =====
+aws_dlm_lifecycle_policy:                       # DLM 라이프사이클 정책
+
+# ===== EMAIL =====
+aws_ses_active_receipt_rule_set:                # SES 활성 수신 규칙셋
+aws_ses_configuration_set:                      # SES 구성셋
+aws_ses_domain_identity:                        # SES 도메인 ID
+aws_ses_email_identity:                         # SES 이메일 ID
+aws_ses_receipt_filter:                         # SES 수신 필터
+aws_ses_receipt_rule_set:                       # SES 수신 규칙셋
+aws_ses_template:                               # SES 템플릿
+
+# ===== MESSAGE BROKER =====
+aws_mq_broker:                                  # MQ 브로커
+aws_mq_configuration:                           # MQ 구성
+
+# ===== MANAGED WORKFLOWS =====
+aws_mwaa_environment:                           # MWAA 환경
+
+# ===== DEVICE FARM =====
+aws_devicefarm_project:                         # Device Farm 프로젝트
+
+# ===== FIREWALL MANAGER =====
+aws_fms_policy:                                 # Firewall Manager 정책
+
+# ===== IOT =====
+aws_iot_certificate:                           # IoT 인증서
+aws_iot_policy:                                # IoT 정책
+aws_iot_role_alias:                            # IoT 역할 별칭
+aws_iot_thing:                                 # IoT 사물
+aws_iot_thing_type:                            # IoT 사물 타입
+aws_iot_topic_rule:                            # IoT 토픽 규칙
+
+# ===== LEX =====
+aws_lex_bot:                                   # Lex 봇
+aws_lex_intent:                                # Lex 인텐트
+aws_lex_slot_type:                             # Lex 슬롯 타입
+
+# ===== LIGHTSAIL =====
+aws_lightsail_domain:                          # Lightsail 도메인
+aws_lightsail_instance:                        # Lightsail 인스턴스
+aws_lightsail_key_pair:                        # Lightsail 키 페어
+aws_lightsail_static_ip:                       # Lightsail 정적 IP
+
+# ===== OPSWORKS =====
+aws_opsworks_stack:                            # OpsWorks 스택
+aws_opsworks_user_profile:                     # OpsWorks 사용자 프로파일
+
+# ===== SERVICE CATALOG =====
+aws_servicecatalog_portfolio:                  # Service Catalog 포트폴리오
+aws_servicecatalog_service_action:             # Service Catalog 서비스 액션
+aws_servicecatalog_tag_option:                 # Service Catalog 태그 옵션
+
+# ===== SERVICE DISCOVERY =====
+aws_service_discovery_service:                 # Service Discovery 서비스
+
+# ===== SIGNER =====
+aws_signer_signing_job:                        # Signer 서명 작업
+aws_signer_signing_profile:                    # Signer 서명 프로파일
+
+# ===== STORAGE GATEWAY =====
+aws_storagegateway_gateway:                    # Storage Gateway
+aws_storagegateway_tape_pool:                  # Storage Gateway 테이프 풀
+
+# ===== SYNTHETICS =====
+aws_synthetics_canary:                         # Synthetics Canary
+
+# ===== TRANSFER =====
+aws_transfer_server:                           # Transfer Family 서버
+
+# ===== WORKSPACES =====
+aws_workspaces_directory:                      # WorkSpaces 디렉터리
+aws_workspaces_ip_group:                       # WorkSpaces IP 그룹
+aws_workspaces_workspace:                      # WorkSpaces 워크스페이스
+
+# ===== WORKLINK =====
+aws_worklink_fleet:                            # WorkLink 플리트
+
+# ===== X-RAY =====
+aws_xray_group:                                # X-Ray 그룹
+
+# ===== IMAGE BUILDER =====
+aws_imagebuilder_component:                    # Image Builder 컴포넌트
+aws_imagebuilder_distribution_configuration:   # Image Builder 배포 설정
+aws_imagebuilder_image:                        # Image Builder 이미지
+aws_imagebuilder_image_pipeline:               # Image Builder 이미지 파이프라인
+aws_imagebuilder_image_recipe:                 # Image Builder 이미지 레시피
+aws_imagebuilder_infrastructure_configuration: # Image Builder 인프라 설정
+
+# ===== TRAFFIC MIRRORING =====
+aws_ec2_traffic_mirror_filter:                 # Traffic Mirror 필터
+aws_ec2_traffic_mirror_session:                # Traffic Mirror 세션
+aws_ec2_traffic_mirror_target:                 # Traffic Mirror 타겟
+
+# ===== OTHERS =====
+aws_ami:                                       # AMI
+aws_ec2_capacity_reservation:                  # EC2 용량 예약
+aws_ec2_carrier_gateway:                       # EC2 Carrier Gateway
+aws_ec2_client_vpn_endpoint:                   # EC2 Client VPN 엔드포인트
+aws_ec2_fleet:                                 # EC2 Fleet
+aws_ec2_local_gateway_route_table_vpc_association: # Local Gateway Route Table VPC 연결
+aws_ec2_managed_prefix_list:                   # 관리형 접두사 목록
+aws_vpc_endpoint_connection_notification:      # VPC 엔드포인트 연결 알림

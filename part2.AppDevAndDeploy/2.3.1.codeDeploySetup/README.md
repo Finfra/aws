@@ -94,10 +94,10 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /var/www/html
+    destination: /usr/share/nginx/html
     overwrite: yes
 permissions:
-  - object: /var/www/html
+  - object: /usr/share/nginx/html
     pattern: "**"
     owner: www-data
     group: www-data
@@ -174,7 +174,7 @@ aws s3 cp sample-app-v1.zip s3://codedeploy-bucket-kitri-자기번호/
 * **Install AWS CodeDeploy Agent**: Never (이미 설치함)
 * Deployment settings
  → **Deployment configuration**: CodeDeployDefault.AllAtOneTime
-* Enable load balancing 채크 제거 
+* Enable load balancing 체크 제거 
 * "Create deployment group" 
 
 ### Step 8: 배포 실행
