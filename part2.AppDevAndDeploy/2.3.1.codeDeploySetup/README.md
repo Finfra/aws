@@ -23,19 +23,20 @@
 
 #### CodeDeploy 서비스 역할
 * IAM > Roles > Create role
-* **Trusted entity**: AWS service
-* **Service**: CodeDeploy
-* **Policy**: AWSCodeDeployRole
-* **Role name**: `CodeDeployServiceRole`
+* **Trusted entity**: AWS service → "Next"
+* **Service or use case**: CodeDeploy → "Next"
+* **Permissions Policy**: AWSCodeDeployRole 확인 → "Next"
+* **Role name**: `CodeDeployServiceRole` → "Create role"
 
 #### EC2 인스턴스 역할
 * IAM > Roles > Create role
-* **Trusted entity**: AWS service
-* **Service**: EC2
+* **Trusted entity**: AWS service → "Next"
+* **Service or use case**: EC2 → "Next"
 * **Policies**: 
   - AmazonS3ReadOnlyAccess
   - CloudWatchLogsFullAccess
-* **Role name**: `CodeDeployInstanceProfile`
+     → "Next"
+* **Role name**: `CodeDeployInstanceProfile` → "Create role"
 
 ### Step 2: EC2 인스턴스에 IAM 역할 연결
 * EC2 > Instances > 인스턴스 선택
@@ -55,8 +56,8 @@ chmod +x ./install
 sudo ./install auto
 
 # Agent 상태 확인
-sudo service codedeploy-agent status
 sudo service codedeploy-agent start
+sudo service codedeploy-agent status
 ```
 
 ### Step 4: 샘플 애플리케이션 준비
@@ -149,36 +150,41 @@ zip -r sample-app-v1.zip . -x "*.git*"
 ### Step 5: S3에 배포 아티팩트 업로드
 ```bash
 # S3 버킷 생성 (CLI 사용)
-aws s3 mb s3://your-codedeploy-bucket-name
+aws s3 mb s3://codedeploy-bucket-kitri-자기번호
 
 # 배포 패키지 업로드
-aws s3 cp sample-app-v1.zip s3://your-codedeploy-bucket-name/
+aws s3 cp sample-app-v1.zip s3://codedeploy-bucket-kitri-자기번호/
 ```
 
 ### Step 6: CodeDeploy 애플리케이션 생성
-* CodeDeploy 서비스로 이동
+* CodeDeploy Applications로 이동 : https://console.aws.amazon.com/codesuite/codedeploy/applications
 * Applications > Create application
 * **Application name**: `SampleWebApp`
 * **Compute platform**: EC2/On-premises
+* → "Create Application
 
 ### Step 7: 배포 그룹 생성
-* SampleWebApp > Create deployment group
+* SampleWebApp > "Create deployment group"
 * **Deployment group name**: `SampleWebApp-DeploymentGroup`
 * **Service role**: CodeDeployServiceRole
 * **Deployment type**: In-place
 * **Environment configuration**: Amazon EC2 instances
 * **Tag filters**: 
   - Key: Name, Value: i1 (또는 인스턴스 태그에 맞게)
-* **Install CodeDeploy Agent**: Never (이미 설치함)
-* **Deployment configuration**: CodeDeployDefault.AllAtOneTime
+* **Install AWS CodeDeploy Agent**: Never (이미 설치함)
+* Deployment settings
+ → **Deployment configuration**: CodeDeployDefault.AllAtOneTime
+* Enable load balancing 채크 제거 
+* "Create deployment group" 
 
 ### Step 8: 배포 실행
-* Deployments > Create deployment
+* Applications에서 SampleWebApp-DeploymentGroup선택 → Create deployment 
 * **Application**: SampleWebApp
 * **Deployment group**: SampleWebApp-DeploymentGroup
 * **Revision type**: My application is stored in Amazon S3
-* **Revision location**: s3://your-codedeploy-bucket-name/sample-app-v1.zip
+* **Revision location**: s3://codedeploy-bucket-kitri-자기번호/sample-app-v1.zip
 * **Deployment description**: Initial deployment v1.0
+* → Create Deployment
 
 ### Step 9: 배포 모니터링 및 검증
 * 배포 진행 상황 실시간 확인
@@ -203,23 +209,23 @@ ls -la /var/www/html/
 
 ## 배포 후 검증 항목
 
-| 항목 | 확인 방법 | 기대 결과 |
-|------|-----------|-----------|
-| 웹 서버 상태 | `systemctl status nginx` | Active (running) |
-| 파일 배포 | `ls /var/www/html/` | index.html 존재 |
-| 웹 접속 | 브라우저에서 EC2 Public IP 접속 | CodeDeploy Test App 표시 |
-| 권한 설정 | `ls -la /var/www/html/` | www-data 소유권 |
+| 항목         | 확인 방법                       | 기대 결과                |
+| ------------ | ------------------------------- | ------------------------ |
+| 웹 서버 상태 | `systemctl status nginx`        | Active (running)         |
+| 파일 배포    | `ls /var/www/html/`             | index.html 존재          |
+| 웹 접속      | 브라우저에서 EC2 Public IP 접속 | CodeDeploy Test App 표시 |
+| 권한 설정    | `ls -la /var/www/html/`         | www-data 소유권          |
 
 ## 문제 해결
 
 ### 일반적인 오류와 해결방법
 
-| 오류 | 원인 | 해결방법 |
-|------|------|----------|
-| Agent 연결 실패 | IAM 권한 부족 | EC2 역할에 S3 읽기 권한 추가 |
-| 스크립트 실행 실패 | 실행 권한 부족 | chmod +x 로 실행 권한 부여 |
-| 배포 타임아웃 | 스크립트 실행 시간 초과 | appspec.yml의 timeout 값 증가 |
-| 파일 권한 오류 | 잘못된 소유자/권한 | appspec.yml의 permissions 섹션 확인 |
+| 오류               | 원인                    | 해결방법                            |
+| ------------------ | ----------------------- | ----------------------------------- |
+| Agent 연결 실패    | IAM 권한 부족           | EC2 역할에 S3 읽기 권한 추가        |
+| 스크립트 실행 실패 | 실행 권한 부족          | chmod +x 로 실행 권한 부여          |
+| 배포 타임아웃      | 스크립트 실행 시간 초과 | appspec.yml의 timeout 값 증가       |
+| 파일 권한 오류     | 잘못된 소유자/권한      | appspec.yml의 permissions 섹션 확인 |
 
 ### 로그 확인 방법
 ```bash
