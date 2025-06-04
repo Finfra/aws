@@ -1,5 +1,91 @@
 # 2.5.1: Elasticsearch 클러스터 생성 및 설정
+# AWS ELK 스택 최근 변화 (2024\~2025 기준)
+AWS에서 제공하는 \*\*ELK 스택(Elasticsearch, Logstash, Kibana)\*\*은 최근 몇 년간 단순한 로그 분석 도구에서 **확장 가능한 Observability 플랫폼**으로 진화함. 특히 **Elastic사와 AWS 간의 협업/경쟁** 구도도 큰 영향을 미침.
+## 1. 명칭 변화 및 제품 확장
+* **"ELK" → "Elastic Stack"** 으로 재브랜딩
 
+  * `Beats`, `Elastic Agent`, `Fleet` 등 포함하며 구성 다양화됨
+  * Elastic Observability / Security / Search 등으로 제품 세분화
+
+## 2. AWS 환경 내 주요 변화
+
+| 항목                          | 변화 내용                                                                        |
+| ----------------------------- | -------------------------------------------------------------------------------- |
+| **Amazon OpenSearch Service** | 기존 AWS Elasticsearch → `Amazon OpenSearch`로 대체됨 (2021 이후 완전 분리 진행) |
+| **Elastic Cloud on AWS**      | Elastic사에서 직접 운영하는 SaaS, AWS Marketplace 통해 제공                      |
+| **Elastic Agent 도입**        | Beats + Logstash 역할을 통합, 관리 간소화                                        |
+| **Fleet & Integrations**      | 다양한 AWS 서비스(CloudWatch, S3 등)와 연동하는 통합 UI 제공                     |
+
+## 3. 기술 스택 주요 업데이트
+### Elasticsearch
+* Lucene 9.x 기반 성능 향상
+* Runtime Fields 도입 (유연한 스키마 설계)
+* Searchable Snapshots, Frozen Tier 등으로 비용 절감
+* Vector search / Hybrid Search 기능 강화 (AI 검색 대응)
+
+### Kibana
+* Dashboard 기능 고도화 (Lens, Canvas, Maps 등 시각화 다양화)
+* Alerting & Action 강화 (Slack, Webhook 연동 등)
+* Machine Learning 기반 이상 탐지 탑재
+### Logstash / Beats → Elastic Agent 중심 재편
+* Elastic Agent + Fleet UI로 통합 관리
+* 경량 수집기 역할을 Elastic Agent가 대부분 대체
+## 4. Amazon OpenSearch와의 차별점
+
+| 항목      | Elastic Cloud on AWS             | Amazon OpenSearch                                 |
+| --------- | -------------------------------- | ------------------------------------------------- |
+| 운영 주체 | Elastic사                        | AWS                                               |
+| 기본 버전 | Elastic Stack 최신               | 오픈소스 기반 자체 포크                           |
+| 라이선스  | Elastic License 2.0              | Apache 2.0                                        |
+| 기능 차이 | ML, Security, Observability 완비 | 제한적 (ML 일부, Kibana→OpenSearch Dashboards 등) |
+
+## 5. 관련 신기능 및 흐름
+
+* **AI+Observability 연동**:
+
+  * APM + ML 통합해 이상징후 자동 탐지
+  * OpenTelemetry 기반 통합 수집 지원 강화
+
+* **Serverless Elasticsearch (Elastic Search Serverless)**:
+
+  * Elastic Cloud 기반, 자동 스케일링/요금제
+  * AWS Lambda + ELK 연계에 유리
+
+## AWS에서 ELK 대응 서비스 매핑
+
+| ELK 구성요소           | 역할                        | AWS Native 대응 서비스                                                     | 설명                                                                  |
+| ---------------------- | --------------------------- | -------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| **Elasticsearch**      | 로그/문서 검색 및 분석 엔진 | **Amazon OpenSearch Service**                                              | 완전관리형 오픈서치 서비스 (Elasticsearch 포크 기반)                  |
+| **Logstash**           | 로그 파싱 및 전처리, 전달   | **Amazon Kinesis Data Firehose** <br> **AWS Glue** <br> **AWS Lambda**     | 로그 수집 → 가공 → 저장 역할 분산 <br> Lambda: 커스텀 파싱 처리       |
+| **Beats**              | 경량 로그/메트릭 수집기     | **CloudWatch Agent** <br> **AWS Distro for OpenTelemetry (ADOT)**          | EC2, ECS, EKS 등에서 로그/메트릭 수집                                 |
+| **Elastic Agent**      | 통합 수집기 + 관리 도구     | **AWS Distro for OpenTelemetry (ADOT)** <br> + **AWS Systems Manager**     | 여러 수집 대상을 하나로 묶어 관리 <br> ADOT로 로그/트레이스 통합 수집 |
+| **Kibana**             | 대시보드, 시각화 UI         | **Amazon OpenSearch Dashboards**                                           | OpenSearch에 포함된 Kibana 포크 UI                                    |
+| **Alerting (Watcher)** | 조건 기반 알림              | **Amazon CloudWatch Alarms** <br> **Amazon EventBridge** <br> **SNS**      | 지표 기반 알림 또는 이벤트 트리거 처리                                |
+| **APM (Elastic APM)**  | 애플리케이션 성능 모니터링  | **AWS X-Ray**                                                              | 분산 트레이싱, 성능 병목 분석                                         |
+| **Security (SIEM)**    | 보안 로그 분석              | **Amazon GuardDuty** <br> **AWS Security Hub** <br> **OpenSearch + Wazuh** | 보안 위협 탐지 및 대응 (SIEM 대안)                                    |
+
+## 요약
+
+* AWS 자체 OpenSearch와 Elastic Cloud on AWS로 이원화됨
+* Beats/Logstash 시대 → Elastic Agent 중심 구조로 진화
+* Observability, ML, Vector Search 등 현대화된 기능 대거 탑재
+* Kibana 기능 고도화 및 운영 UI 통합
+* 비용 최적화 + 클라우드 네이티브 강화 방향으로 진화 중
+
+## ELK Docker Version
+```
+cd work-elk
+docker-compose up -d
+```
+
+
+
+
+
+
+
+
+# OpenSearch Service
 ## 실습 목표
 * Amazon OpenSearch Service(구 Elasticsearch Service) 이해
 * OpenSearch 클러스터 생성 및 기본 설정
