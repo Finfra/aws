@@ -59,6 +59,12 @@ sudo apt install mysql-client-core-8.0
 
 # RDS 연결 테스트
 mysql -h <RDS-Endpoint> -P 3306 -u admin -p
+## 유저명 명시적 확인
+```
+aws rds describe-db-instances \
+  --query 'DBInstances[*].[DBInstanceIdentifier,MasterUsername]' \
+  --output table
+```
 
 # 연결 성공 시 다음 명령어 실행
 SHOW DATABASES;
