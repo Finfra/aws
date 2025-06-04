@@ -78,13 +78,6 @@ cd work-elk
 docker-compose up -d
 ```
 
-
-
-
-
-
-
-
 # OpenSearch Service
 ## 실습 목표
 * Amazon OpenSearch Service(구 Elasticsearch Service) 이해
