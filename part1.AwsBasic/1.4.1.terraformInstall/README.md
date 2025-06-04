@@ -21,7 +21,7 @@ sudo apt-get update
 # Step3. Install Terraform And Ansible
 * 아래 스크립트를 실행합니다. python3.12가 아닐 경우임.
 ```
-sudo -i bash -c 'curl https://raw.githubusercontent.com/Finfra/aws/refs/heads/main/1.4.1.terraformInstall/installOnEc2.sh | bash'
+sudo -i bash -c 'curl https://raw.githubusercontent.com/Finfra/aws/refs/heads/main/part1.AwsBasic/1.4.1.terraformInstall/installOnEc2.sh|bash'
 ```
   - apt update가 python version을 3.12로 올린 경우 아래 스크립트 실행.
 * python3.12가 설치되어 있을때는 아래 스크립트를 실행합니다.
