@@ -44,8 +44,6 @@ ls -la /dev/xvd*
 
 ### 5. 볼륨 분리 및 정리
 ```bash
-# 마운트 해제 (파일시스템 생성 후)
-sudo umount /data1
 
 # AWS Console에서 볼륨 분리
 # Actions → Detach Volume
