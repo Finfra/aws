@@ -6,7 +6,7 @@
 1. 폴더로 이동
 ```
 cd
-cd aws/1.6.2.RDS
+cd aws/part1.AwsBasic/1.6.2.RDS
 ```
 
 2. init 및 apply
