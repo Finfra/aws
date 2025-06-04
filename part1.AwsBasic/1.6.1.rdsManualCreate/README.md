@@ -70,6 +70,7 @@ mysql -h <RDS-Endpoint> -P 3306 -u admin -p
 # 연결 성공 시 다음 명령어 실행
 ```
 SHOW DATABASES;
+create database testdb;
 USE testdb;
 SHOW TABLES;
 ```
