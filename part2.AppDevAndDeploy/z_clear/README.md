@@ -6,7 +6,7 @@
 # 설치
 ```
 curl -sSfL https://raw.githubusercontent.com/jckuester/awsweeper/master/install.sh | sh
-cp bin/awsweeper ~/.bin/
+sudo cp bin/awsweeper ~/.bin/usrlocalbin
 ```
 
 # i1와 iam terraform유저 빼고 지우기 삭제

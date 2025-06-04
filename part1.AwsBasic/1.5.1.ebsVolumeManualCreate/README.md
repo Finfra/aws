@@ -56,12 +56,13 @@ sudo umount /data1
 
 ## EBS 볼륨 타입 비교
 
-| 타입 | 설명 | IOPS | 처리량 | 용도 |
-| gp3 | General Purpose SSD v3 | 3,000-16,000 | 125-1,000 MiB/s | 범용 워크로드 |
-| gp2 | General Purpose SSD v2 | 100-16,000 | 128-250 MiB/s | 범용 워크로드 |
-| io2 | Provisioned IOPS SSD | 100-64,000 | 256-4,000 MiB/s | 고성능 데이터베이스 |
-| st1 | Throughput Optimized HDD | 500 | 40-500 MiB/s | 빅데이터, 로그 처리 |
-| sc1 | Cold HDD | 250 | 12-250 MiB/s | 비용 최적화 |
+| 타입 | 설명                     | IOPS         | 처리량          | 용도                |
+| ---- | ------------------------ | ------------ | --------------- | ------------------- |
+| gp3  | General Purpose SSD v3   | 3,000-16,000 | 125-1,000 MiB/s | 범용 워크로드       |
+| gp2  | General Purpose SSD v2   | 100-16,000   | 128-250 MiB/s   | 범용 워크로드       |
+| io2  | Provisioned IOPS SSD     | 100-64,000   | 256-4,000 MiB/s | 고성능 데이터베이스 |
+| st1  | Throughput Optimized HDD | 500          | 40-500 MiB/s    | 빅데이터, 로그 처리 |
+| sc1  | Cold HDD                 | 250          | 12-250 MiB/s    | 비용 최적화         |
 
 ## 주의사항
 * 볼륨과 인스턴스는 동일한 AZ에 있어야 함
