@@ -19,7 +19,7 @@
 
 ### 3. 설정 정보 입력
 * DB instance identifier: `mydb-instance`
-* Master username: `root`
+* Master username: `admin`
 * Master password: `MyPassword123!` (메모 필수)
 * Confirm password: 동일하게 입력
 
