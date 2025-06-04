@@ -96,11 +96,12 @@ SELECT * FROM users;
 
 ## RDS 인스턴스 클래스
 
-| 클래스 | vCPU | 메모리 | 네트워크 성능 | 용도 |
-| db.t3.micro | 2 | 1 GiB | 최대 5 Gbps | 개발/테스트 |
-| db.t3.small | 2 | 2 GiB | 최대 5 Gbps | 소규모 운영 |
-| db.m5.large | 2 | 8 GiB | 최대 10 Gbps | 일반 운영 |
-| db.r5.large | 2 | 16 GiB | 최대 10 Gbps | 메모리 집약적 |
+| 클래스      | vCPU | 메모리 | 네트워크 성능 | 용도          |
+| ----------- | ---- | ------ | ------------- | ------------- |
+| db.t3.micro | 2    | 1 GiB  | 최대 5 Gbps   | 개발/테스트   |
+| db.t3.small | 2    | 2 GiB  | 최대 5 Gbps   | 소규모 운영   |
+| db.m5.large | 2    | 8 GiB  | 최대 10 Gbps  | 일반 운영     |
+| db.r5.large | 2    | 16 GiB | 최대 10 Gbps  | 메모리 집약적 |
 
 ## 백업 및 스냅샷
 ```bash
