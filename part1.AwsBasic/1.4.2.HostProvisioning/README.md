@@ -23,7 +23,7 @@ ssh-keygen -f ~/.ssh/id_rsa -N ''
 ```
 cd
 git clone https://github.com/Finfra/aws
-cd ~/aws/1.4.2.HostProvisioning/
+cd ~/aws/part1.AwsBasic/1.4.2.HostProvisioning/
 terraform init
 terraform apply --auto-approve
 ```
