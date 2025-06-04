@@ -6,7 +6,7 @@
 # 실행 절차
 1. 폴더로 이동
 ```
-cd ~/aws/1.5.4.UserdataAndCloudinit
+cd ~/aws/part1.AwsBasic/1.5.4.UserdataAndCloudinit
 ```
 
 2. init 및 apply
