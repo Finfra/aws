@@ -7,7 +7,7 @@
 # 실행 절차
 1. 폴더로 이동
 ```
-cd aws/1.5.3.Ec2EBS
+cd aws/part1.AwsBasic/1.5.3.Ec2EBS
 ```
 
 2. init 및 apply
