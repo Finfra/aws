@@ -1,137 +1,30 @@
-# AWSweepr 완전 삭제용 filter.yml
-# 주의: 모든 AWS 리소스를 삭제함. 반드시 --dry-run으로 테스트 후 사용
-# 사용법: awsweeper --dry-run filter.yml
-#           i1, terraform 빼고 지워짐
-#           i1은 직접 제거할 것.
-# ===== COMPUTE =====
-aws_instance:                                    # EC2 인스턴스
+aws_ami:
+aws_autoscaling_group:
+aws_cloudformation_stack:
+aws_ebs_snapshot:
+aws_ebs_volume:
+aws_efs_file_system:
+aws_eip:
+aws_elb:
+aws_iam_group:
+aws_iam_instance_profile:
+aws_iam_policy:
+  - id: arn:aws:*
+aws_iam_role:
+aws_iam_user:
+  - id: arn:aws:iam:*
+aws_instance:
   - tags:
-      NOT(Name): ^i1$
-aws_launch_configuration:                        # Launch Configuration
-aws_launch_template:                             # Launch Template
-aws_autoscaling_group:                           # Auto Scaling Group
-aws_spot_fleet_request:                          # Spot Fleet
-aws_spot_instance_request:                       # Spot Instance
-
-# ===== STORAGE =====
-aws_ebs_volume:                                  # EBS 볼륨
-aws_ebs_snapshot:                                # EBS 스냅샷
-aws_efs_file_system:                             # EFS 파일시스템
-aws_efs_access_point:                            # EFS 액세스 포인트
-aws_fsx_lustre_file_system:                      # FSx Lustre
-aws_fsx_windows_file_system:                     # FSx Windows
-
-# ===== S3 =====
-aws_s3_bucket:                                   # S3 버킷
-aws_s3outposts_endpoint:                         # S3 Outposts 엔드포인트
-
-# ===== NETWORKING =====
-aws_vpc:                                         # VPC
-aws_subnet:                                      # 서브넷
-aws_internet_gateway:                            # 인터넷 게이트웨이
-aws_nat_gateway:                                 # NAT 게이트웨이
-aws_egress_only_internet_gateway:                # IPv6 전용 인터넷 게이트웨이
-aws_route_table:                                 # 라우팅 테이블
-aws_network_acl:                                 # 네트워크 ACL
-aws_security_group:                              # 보안 그룹
-aws_network_interface:                           # 네트워크 인터페이스
-aws_eip:                                         # Elastic IP
-aws_key_pair:                                    # 키 페어
-aws_placement_group:                             # 배치 그룹
-
-# ===== VPC CONNECTIVITY =====
-aws_vpc_endpoint:                                # VPC 엔드포인트
-aws_vpc_endpoint_service:                        # VPC 엔드포인트 서비스
-aws_vpc_peering_connection:                      # VPC 피어링
-aws_vpn_gateway:                                 # VPN 게이트웨이
-aws_ec2_transit_gateway:                         # Transit Gateway
-aws_ec2_transit_gateway_vpc_attachment:          # TGW VPC 연결
-aws_ec2_transit_gateway_peering_attachment:      # TGW 피어링 연결
-aws_ec2_transit_gateway_route_table:             # TGW 라우팅 테이블
-
-# ===== LOAD BALANCING =====
-aws_elb:                                         # Classic Load Balancer
-aws_lb:                                          # Application/Network LB
-aws_alb_target_group:                            # ALB 타겟 그룹
-aws_lb_target_group:                             # LB 타겟 그룹
-
-# ===== DATABASE =====
-aws_db_instance:                                 # RDS 인스턴스
-aws_rds_cluster:                                 # RDS 클러스터
-aws_rds_cluster_endpoint:                        # RDS 클러스터 엔드포인트
-aws_rds_cluster_parameter_group:                 # RDS 클러스터 파라미터 그룹
-aws_rds_global_cluster:                          # RDS 글로벌 클러스터
-aws_db_parameter_group:                          # DB 파라미터 그룹
-aws_db_security_group:                           # DB 보안 그룹
-aws_db_subnet_group:                             # DB 서브넷 그룹
-aws_db_snapshot:                                 # DB 스냅샷
-aws_db_event_subscription:                       # DB 이벤트 구독
-aws_db_proxy:                                    # RDS 프록시
-
-# ===== DYNAMODB =====
-aws_dynamodb_table:                              # DynamoDB 테이블
-aws_dynamodb_global_table:                       # DynamoDB 글로벌 테이블
-aws_dax_parameter_group:                         # DAX 파라미터 그룹
-aws_dax_subnet_group:                            # DAX 서브넷 그룹
-
-# ===== ELASTICACHE =====
-aws_elasticache_replication_group:               # ElastiCache 복제 그룹
-aws_elasticache_global_replication_group:        # ElastiCache 글로벌 복제
-
-# ===== REDSHIFT =====
-aws_redshift_cluster:                            # Redshift 클러스터
-aws_redshift_parameter_group:                    # Redshift 파라미터 그룹
-aws_redshift_security_group:                     # Redshift 보안 그룹
-aws_redshift_subnet_group:                       # Redshift 서브넷 그룹
-aws_redshift_event_subscription:                 # Redshift 이벤트 구독
-aws_redshift_snapshot_copy_grant:                # Redshift 스냅샷 복사 권한
-aws_redshift_snapshot_schedule:                  # Redshift 스냅샷 스케줄
-
-# ===== NEPTUNE =====
-aws_neptune_event_subscription:                  # Neptune 이벤트 구독
-
-# ===== TIMESTREAM =====
-aws_timestreamwrite_database:                    # Timestream 데이터베이스
-
-# ===== IAM =====
-aws_iam_user:                                    # IAM 사용자
-  - tags:
-      NOT(Name): terraform
-aws_iam_group:                                   # IAM 그룹
-aws_iam_role:                                    # IAM 역할
-aws_iam_policy:                                  # IAM 정책
-aws_iam_instance_profile:                        # IAM 인스턴스 프로파일
-aws_iam_server_certificate:                      # IAM 서버 인증서
-aws_iam_service_linked_role:                     # IAM 서비스 연결 역할
-aws_iam_access_key:                              # IAM 액세스 키
-aws_iam_account_alias:                           # IAM 계정 별칭
-
-# ===== LAMBDA =====
-aws_lambda_function:                             # Lambda 함수
-aws_lambda_code_signing_config:                  # Lambda 코드 서명 설정
-aws_lambda_event_source_mapping:                 # Lambda 이벤트 소스 매핑
-
-# ===== API GATEWAY =====
-aws_api_gateway_rest_api:                        # API Gateway REST API
-aws_api_gateway_api_key:                         # API Gateway API 키
-aws_api_gateway_client_certificate:              # API Gateway 클라이언트 인증서
-aws_api_gateway_domain_name:                     # API Gateway 도메인명
-aws_api_gateway_usage_plan:                      # API Gateway 사용 계획
-aws_api_gateway_vpc_link:                        # API Gateway VPC 링크
-aws_apigatewayv2_api:                           # API Gateway v2 API
-aws_apigatewayv2_domain_name:                   # API Gateway v2 도메인명
-aws_apigatewayv2_vpc_link:                      # API Gateway v2 VPC 링크
-
-# ===== CODEDEPLOY & CI/CD =====
-aws_codedeploy_deployment_config:                # CodeDeploy 배포 설정
-aws_codebuild_project:                           # CodeBuild 프로젝트
-aws_codebuild_report_group:                      # CodeBuild 보고서 그룹
-aws_codebuild_source_credential:                 # CodeBuild 소스 자격 증명
-aws_codecommit_repository:                       # CodeCommit 리포지토리
-aws_codepipeline_webhook:                        # CodePipeline 웹훅
-aws_codestarconnections_connection:              # CodeStar 연결
-aws_codestarconnections_host:                    # CodeStar 호스트
-aws_codestarnotifications_notification_rule:    # CodeStar 알림 규칙
-aws_codeartifact_domain:                         # CodeArtifact 도메인
-aws_codeartifact_repository:                     # CodeArtifact 리포지토리
-
+     NOT(Name): "i1"
+aws_internet_gateway:
+aws_key_pair:
+aws_kms_key:
+aws_launch_configuration:
+aws_nat_gateway:
+aws_network_acl:
+  - id: arn:aws:*
+aws_network_interface:
+aws_route53_zone:
+aws_route_table:
+aws_s3_bucket:
+aws_vpc_endpoint:
