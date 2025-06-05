@@ -6,12 +6,12 @@
 # 설치
 ```
 curl -sSfL https://raw.githubusercontent.com/jckuester/awsweeper/master/install.sh | sh
-sudo cp bin/awsweeper ~/.bin/usrlocalbin
+#sudo cp bin/awsweeper ~/.bin/usrlocalbin
 ```
 
 # i1와 iam terraform유저 빼고 지우기 삭제
-awsweeper -dry-run  ~/Library/CloudStorage/Dropbox/Data/awsweeper/all.yml
-awsweeper  ~/Library/CloudStorage/Dropbox/Data/awsweeper/all.yml
+awsweeper -dry-run  ~/aws/part2.AppDevAndDeploy/z_clear/all.yml
+awsweeper  ~/aws/part2.AppDevAndDeploy/z_clear/all.yml
 
 # cf) 리전 지정 삭제
 awsweeper --region=eu-west-1 --force  ~/Library/CloudStorage/Dropbox/Data/awsweeper/all.yml
