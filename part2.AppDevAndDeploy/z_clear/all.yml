@@ -169,13 +169,13 @@ aws_msk_cluster:                                 # MSK 클러스터
 aws_msk_configuration:                           # MSK 구성
 
 # ===== CLOUDWATCH =====
-aws_cloudwatch_dashboard:                       # CloudWatch 대시보드
-aws_cloudwatch_log_group:                       # CloudWatch 로그 그룹
-aws_cloudwatch_log_destination:                 # CloudWatch 로그 대상
-aws_cloudwatch_log_resource_policy:             # CloudWatch 로그 리소스 정책
-aws_cloudwatch_query_definition:                # CloudWatch 쿼리 정의
-aws_cloudwatch_event_bus:                       # CloudWatch Events 버스
-aws_cloudwatch_event_archive:                   # CloudWatch Events 아카이브
+#aws_cloudwatch_dashboard:                       # CloudWatch 대시보드
+#aws_cloudwatch_log_group:                       # CloudWatch 로그 그룹
+#aws_cloudwatch_log_destination:                 # CloudWatch 로그 대상
+#aws_cloudwatch_log_resource_policy:             # CloudWatch 로그 리소스 정책
+#aws_cloudwatch_query_definition:                # CloudWatch 쿼리 정의
+#aws_cloudwatch_event_bus:                       # CloudWatch Events 버스
+#aws_cloudwatch_event_archive:                   # CloudWatch Events 아카이브
 
 # ===== CLOUDTRAIL =====
 aws_cloudtrail:                                  # CloudTrail
