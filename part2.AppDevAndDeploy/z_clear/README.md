@@ -10,14 +10,18 @@ curl -sSfL https://raw.githubusercontent.com/jckuester/awsweeper/master/install.
 ```
 
 # i1와 iam terraform유저 빼고 지우기 삭제
+```
 awsweeper -dry-run  ~/aws/part2.AppDevAndDeploy/z_clear/all.yml
 awsweeper  ~/aws/part2.AppDevAndDeploy/z_clear/all.yml
-
+```
 # cf) 리전 지정 삭제
+```
 awsweeper --region=eu-west-1 --force  ~/Library/CloudStorage/Dropbox/Data/awsweeper/all.yml
 awsweeper --region=ap-northeast-2 --force  ~/Library/CloudStorage/Dropbox/Data/awsweeper/all.yml
-
+```
 # cf) 모든 리전 삭제
+```
 for region in $(aws ec2 describe-regions --query "Regions[].{Name:RegionName}" --output text); do
     awsweeper --region=$region --force  ~/Library/CloudStorage/Dropbox/Data/awsweeper/all.yml
 done
+```
