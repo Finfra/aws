@@ -62,7 +62,7 @@ variable "major_engine_version" {
 }
 
 variable "engine_version" {
-  default     = "8.0.33"
+  default     = "8.0.42"
   description = "Version of the database to be launched"
 }
 
