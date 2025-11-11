@@ -19,7 +19,7 @@ terraform apply -auto-approve
 3. Instance 생성 확인
 ```
 ip=$(cat terraform.tfstate |grep public_ip\"|awk 'BEGIN{FS="\""}{printf $4}')
-ssh -i ~/mykey ubuntu@$ip
+ssh ubuntu@$ip
   df -h|grep data
   cat /etc/fstab
   cat /var/log/cloud-init-output.log
