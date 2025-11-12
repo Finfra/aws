@@ -3,7 +3,7 @@
 
 ## Terraform Apply
 ```
-cd part2.AppDevAndDeploy/2.4.1.eksClusterSetup
+cd ~/aws/part2.AppDevAndDeploy/2.4.1.eksClusterSetup
 terraform init
 terraform apply -auto-approve
 ```
