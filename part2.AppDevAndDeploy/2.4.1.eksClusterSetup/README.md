@@ -4,6 +4,7 @@
 ## Terraform Apply
 ```
 cd part2.AppDevAndDeploy/2.4.1.eksClusterSetup
+terraform init
 terraform apply -auto-approve
 ```
 ## **kubectl 다운로드 및 설치**
